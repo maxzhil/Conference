@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>08-04-Zhilenko</display-name>
+  <welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>FrontController</servlet-name>
+		<servlet-class>ru.rsreu.Zhilenko0804.FrontController.FrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FrontController</servlet-name>
+		<url-pattern>/FrontController</url-pattern>
+	</servlet-mapping>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.RuntimeException</exception-type>
+		<location>/error.jsp</location>
+	</error-page>
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
+
+	<filter>
+		<filter-name>FormEncodingSetterFilter</filter-name>
+		<filter-class>ru.rsreu.Zhilenko0804.filter.FormEncodingSetterFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>FormEncodingSetterFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>FilterAuth</filter-name>
+		<filter-class>ru.rsreu.Zhilenko0804.filter.FilterAuth</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FilterAuth</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>ru.rsreu.Zhilenko0804.listener.AppContextListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>ru.rsreu.Zhilenko0804.listener.SessionListener</listener-class>
+	</listener>
+</web-app>
